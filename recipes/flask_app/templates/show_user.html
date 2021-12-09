@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show User</title>
+</head>
+<body>
+    <nav>
+        <a href="/recipes">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </nav>
+    <div>
+        <h1>{{user.first_name}} {{user.last_name}}'s Recipes</h1>
+        {% for recipe in user.recipes %}
+            <h3><a href="/recipes/{{recipe.id}}">{{recipe.name}}</a></h3>
+        {% endfor %}
+    </div>
+</body>
+</html>

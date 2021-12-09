@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipe</title>
+</head>
+<body>
+    <nav>
+        <h1>Edit {{recipe.name}}</h1>
+        <a href="/recipes">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </nav>
+    <div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color:red">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="/update_recipe/{{recipe.id}}" method="POST">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" name="name" value="{{recipe.name}}">
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <textarea name="description" cols="30" rows="10">{{recipe.description}}</textarea>
+            </div>
+            <div>
+                <label for="instruction">Instructions:</label>
+                <textarea name="instruction" cols="30" rows="10">{{recipe.instruction}}</textarea>
+            </div>
+            <div>
+                <label for="date_made">Date Made:</label>
+                <input type="date" name="date_made" value="{{recipe.date_made.strftime('%Y-%m-%d')}}">
+            </div>
+            <div>
+                <label for="under30">Under 30 Minutes?:</label>
+                <div>
+                    <input type="radio" name="under30" value='0'>
+                    <label for="0">No</label>
+                </div>
+                <div>
+                    <input type="radio" name="under30" value='1'>
+                    <label for="1">Yes</label>
+                </div>
+            </div>
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</body>
+</html>
